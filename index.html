@@ -9,10 +9,10 @@
 		<meta name="author" content="JkmAS">
 		<!-- Title -->
 		<title>WifiGuard Sharing - Login</title>	
-		<!-- Bootstrap -->
-		<link href="lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+		<!-- CSS style -->
+		<link href="css/styles.css" rel="stylesheet">
 		<!-- HTML5 IE8 support -->		
-		<!--[if lt IE 9]>
+		<!--[if lt IE 9]>class
 		  <script src="lib/dist/html5shiv.min.js"></script>
 		  <script src="lib/dest/respond.min.js"></script>
 		<![endif]-->
@@ -21,8 +21,43 @@
 		<!-- Font -->
 		<link href='http://fonts.googleapis.com/css?family=Ubuntu:300,400,700&amp;subset=latin,latin-ext' rel='stylesheet' type='text/css' />
 	</head>
-	<body>
-
+	<body class="container">
+		<div class="row">
+			<header>
+				<h1>WifiGuard Sharing</h1>
+			</header>		
+			
+			<div class="console-log">
+				<div class="console-log-panel">
+					<div class="panel-heading">
+						<h2 class="panel-title">Login</h2>
+					</div>
+					<div class="panel-body">
+						<form class="form-horizontal">
+							<div class="form-group">
+								<label class="col-sm-2 control-label">Console</label>
+								<div class="col-sm-10">
+									<span class="info-log">Please, log in</span>
+								</div>
+								<label class="col-sm-2 control-label">E-mail</label>
+								<div class="col-sm-10">
+									<input type="email" placeholder="Email">
+								</div>	
+								<label class="col-sm-2 control-label">Password</label>
+								<div class="col-sm-10">
+									<input type="password" placeholder="Password">
+								</div>			
+								<label class="col-sm-2 control-label">Login</label>					
+								<div class="col-sm-10">
+									<button class="button-log">OK</button>	
+								</div>
+							</div>	
+						</form>										
+					</div>
+				</div>
+			</div>
+			
+		</div>
 		
 		<!-- JavaScript -->
 		<script src="lib/jquery/dist/jquery.min.js"></script>

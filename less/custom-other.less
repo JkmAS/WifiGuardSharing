@@ -1,0 +1,91 @@
+header{
+    @header-color: white;
+    .make-sm-column(12);
+    min-height: 100px;
+    color: @header-color;
+}
+.console-log, .upload{ 
+    .make-sm-column(10);
+    .make-sm-column-offset(1);
+    .make-md-column(6);
+    .make-md-column-offset(3);
+}
+.console-log-panel, .upload-panel{
+    .panel;
+    .panel-primary;  
+}
+.panel-body, .upload-panel-body{
+    .panel-body;
+    background: @brand-primary;
+}
+.info-log{
+    line-height: 35px;    
+    font-weight: bold;
+}
+.info-log-error{
+    line-height: 35px;
+    color: @brand-danger;
+    font-weight: bold;
+}
+input{
+    .form-control;
+    background: @brand-primary;
+    border: none;
+}
+input:focus{
+    .box-shadow(none);
+}
+.button-log{
+    .btn;
+    .btn-primary;
+    .btn-block;
+}
+body{
+    @gradient-from: #eec08e;
+    @gradient-to: #0ba2cd;
+    background: -webkit-linear-gradient(left bottom, @gradient-from , @gradient-to); 
+    background: -o-linear-gradient(top right, @gradient-from , @gradient-to); 
+    background: -moz-linear-gradient(top right, @gradient-from , @gradient-to); 
+    background: linear-gradient(to top right, @gradient-from  , @gradient-to); 
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+.body-navbar-fixed{
+    padding-top: 50px;
+}
+.dropdown-menu{
+    .dropdown-menu;
+    min-width: 100%;
+}
+.dropdown-panel{
+    .make-sm-column(12);
+    .make-md-column(3);
+}
+.btn-dropdown{
+    .btn;
+    .btn-primary;
+    .btn-block;
+}
+.tbl-panel{
+    .make-sm-column(12);
+    .make-md-column(9);
+}
+.tbl-panel table{
+    .table;
+    .table-hover;
+}
+.navigation{
+    .navbar;
+    .navbar-default;
+    .navbar-fixed-top;
+}
+.navigation > div{
+    .container;
+}
+.navigation > div > div{
+    .container-fluid;
+}
+.navbar-header > button{
+    .navbar-toggle;
+    .collapse;
+}

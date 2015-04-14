@@ -1,0 +1,17 @@
+{
+  "name": "WifiGuardSharing",
+  "version": "1.0.0",
+  "description": "Web application to store the results of WifiGuard app",
+  "keywords": [
+    "WifiGuard",
+    "WifiGuardSharing"
+  ],
+  "authors": [
+    "JkmAS"
+  ],
+  "license": "MIT",
+  "homepage": "wifiguard.cz",
+  "dependencies": {
+    "bootstrap": "~3.3.4"
+  }
+}

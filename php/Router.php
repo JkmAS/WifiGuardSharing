@@ -24,6 +24,7 @@ class Router {
                 include $dir['controller'];
             }
         });
+        $this->loadController();
     }
     
     public function loadController(){

@@ -5,47 +5,34 @@
  *
  * @author jkmas
  */
-require_once 'Login.php';
-require_once 'ShowRecord.php';
-require_once 'Uploader.php';
-require_once 'Error.php';
+
+//todo vyřešit zprávy
 
 class Router {    
-    public $output;
     
     public function __construct() {
-        session_start();        
-        $this->loadController();
-        
+        session_start(); 
+        spl_autoload_register(function ($class){
+            $dir = array(
+                'model' => 'models/'.$class.'.php',
+                'controller' => 'controllers/'.$class.'.php'
+            );
+            if (file_exists($dir['model'])){
+                include $dir['model'];
+            }
+            elseif (file_exists($dir['controller'])){
+                include $dir['controller'];
+            }
+        });
     }
     
     public function loadController(){
         $uri = $_SERVER['REQUEST_URI']; 
-        switch ($uri) {
-            case 'index.php':
-                new Login();
-                break;                
-            case 'app.php':
-                
-                $par = "";//TODO
-                
-                if($par == "show"){
-                    new ShowRecord();
-                    break;
-                }
-                if($par == "upload"){
-                    new Uploader();
-                    break;
-                } 
-                if($par == "logout"){
-                    new Login();
-                    break;
-                }               
-            default:
-                new Error();
-                break;
+        if (preg_match("/index.php/", $uri)){
+            new Login();
+        }
+        if (preg_match("/app.php/", $uri)){
+            new App();
         }
     }
-    
-    
 }

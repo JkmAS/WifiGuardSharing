@@ -46,10 +46,19 @@
 								<label class="col-sm-2 control-label">Password</label>
 								<div class="col-sm-10">
 									<input type="password" placeholder="Password" name="password">
-								</div>			
-								<label class="col-sm-2 control-label">Login</label>					
-								<div class="col-sm-10">
-									<button class="button-log" name="login">OK</button>	
+								</div>											
+								<div class="collapse" id="registr">
+									<label class="col-sm-2 control-label">Confirm</label>
+									<div class="col-sm-10">
+										<input type="password" placeholder="Confirm password" name="confirmPassword">
+									</div>
+								</div>
+								<label class="col-sm-2 control-label">Action</label>					
+								<div class="col-sm-5">
+									<button class="button-log" name="login">Login</button>	
+								</div>
+								<div class="col-sm-5">
+									<button class="button-log" data-toggle="collapse" href="#registr">Registration</button>	
 								</div>
 							</div>	
 						</form>										

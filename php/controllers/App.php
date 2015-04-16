@@ -1,10 +1,10 @@
 <?php
 
 /**
- * Description of Login
+ * Description of App
  *
  * @author jkmas
  */
-class Login {
+class App {
     //put your code here
 }

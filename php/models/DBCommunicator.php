@@ -10,10 +10,10 @@ class DBCommunicator {
     public static function connectDibi(){
         dibi::connect(array(
             'driver'   => 'mysql',
-            'host'     => 'XXX.wedos.net',
-            'username' => 'name',
+            'host'     => 'wm40.wedos.net',
+            'username' => 'w48301_wgs',
             'password' => '****',
-            'database' => 'nameDatabase',
+            'database' => 'd48301_wgs',
             'charset'  => 'utf8',
         ));    
     }

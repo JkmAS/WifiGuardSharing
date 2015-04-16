@@ -52,7 +52,7 @@
 								<div class="col-sm-10">
 									<input type="password" placeholder="Password" name="password">
 								</div>											
-								<div class="collapse" id="registr">
+								<div class="collapse" id="registration">
 									<label class="col-sm-2 control-label">Confirm</label>
 									<div class="col-sm-10">
 										<input type="password" placeholder="Confirm password" name="confirmPassword">
@@ -60,10 +60,10 @@
 								</div>
 								<label class="col-sm-2 control-label">Action</label>					
 								<div class="col-sm-5">
-									<button class="button-log" name="login">Login</button>	
+									<button id="login" class="button-log" name="login">Login</button>	
 								</div>
 								<div class="col-sm-5">
-									<button class="button-log" data-toggle="collapse" href="#registr">Registration</button>	
+									<button id="registr" class="button-log" data-toggle="collapse" href="#registration">Registration</button>	
 								</div>
 							</div>	
 						</form>										
@@ -76,5 +76,6 @@
 		<!-- JavaScript -->
 		<script src="lib/jquery/dist/jquery.min.js"></script>
 		<script src="lib/bootstrap/dist/js/bootstrap.min.js"></script>
+                <script src="js/javascript.js"></script>
 	</body>
 </html>

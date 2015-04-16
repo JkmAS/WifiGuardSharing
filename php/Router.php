@@ -12,16 +12,23 @@ class Router {
     
     public function __construct() {
         session_start(); 
-        spl_autoload_register(function ($class){
+        spl_autoload_register(function ($class){            
             $dir = array(
-                'model' => 'models/'.$class.'.php',
-                'controller' => 'controllers/'.$class.'.php'
-            );
+                'model' => 'php/models/'.$class.'.php',
+                'controller' => 'php/controllers/'.$class.'.php',
+                'lib' => 'lib/dibi/dibi.min.php'
+            );   
             if (file_exists($dir['model'])){
                 include $dir['model'];
             }
             elseif (file_exists($dir['controller'])){
                 include $dir['controller'];
+            } 
+            elseif (file_exists($class.'.php')) {
+                include $class.'.php';
+            }
+            elseif (file_exists($dir['lib'])) {
+                include $dir['lib'];
             }
         });
         $this->loadController();

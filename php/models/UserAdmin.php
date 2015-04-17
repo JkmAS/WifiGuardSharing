@@ -52,7 +52,7 @@ class UserAdmin extends Model {
     * @param string password Password of user
     * @param string confirmPassword Password of user 
     */
-    public function registr($email, $password, $confirmPassword){
+    public function registr($email, $password, $confirmPassword){ 
         if(empty($email)){ 
             $this->message = ["error", "Missing email"];
         }
@@ -67,7 +67,7 @@ class UserAdmin extends Model {
         }
         elseif ($password != $confirmPassword) {     
             $this->message = ["error", "Passwords do not match"];
-        } else {            
+        } else {       
             $result = dibi::query('SELECT COUNT(*)
                                    FROM [user]
                                    WHERE [email] = %s', $email, 'LIMIT 1');
@@ -75,18 +75,18 @@ class UserAdmin extends Model {
             if ($userExist){     
                 $this->message = ["error", "User already exists"];
             }        
-            else {              
+            else {   
                 //password_hash, PASSWORD_BCRYPT = BLOWFISH
-                $options = array(
+                $options = [
                     'salt' => mcrypt_create_iv(22, MCRYPT_DEV_URANDOM),
                     'cost' => 12
-                );
+                ];
                 $password_result = password_hash($password, PASSWORD_BCRYPT, $options);
                                 
-                $arr = array(
+                $arr = [
                     'email' => $email,
                     'password' => $password_result                
-                );
+                ];
                 dibi::query('INSERT INTO [user]', $arr); 
                 $_SESSION['wifiGuardSharingEmail'] = $email;
                 parent::redirection("app.php");

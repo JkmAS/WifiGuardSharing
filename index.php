@@ -1,7 +1,7 @@
 <?php
     require_once("php/Router.php");
     $router = new Router();
-    extract($router->__getData());    
+    extract($router->__getData()); 
 ?>
 <!DOCTYPE html>
 <html>
@@ -38,11 +38,11 @@
 						<h2 class="panel-title">Login</h2>
 					</div>
 					<div class="panel-body">
-						<form class="form-horizontal">
+						<form method="POST" class="form-horizontal">
 							<div class="form-group">
 								<label class="col-sm-2 control-label">Console</label>
 								<div class="col-sm-10">
-									<span class="info-log">Please, log in</span>
+									<span class="<?= 'info-log-'.$message[0]?>"><?= $message[1]?></span>
 								</div>
 								<label class="col-sm-2 control-label">E-mail</label>
 								<div class="col-sm-10">
@@ -60,7 +60,7 @@
 								</div>
 								<label class="col-sm-2 control-label">Action</label>					
 								<div class="col-sm-5">
-									<button id="login" class="button-log" name="login">Login</button>	
+									<button id="login" class="button-log" name="login" type="submit">Login</button>	
 								</div>
 								<div class="col-sm-5">
 									<button id="registr" class="button-log" data-toggle="collapse" href="#registration">Registration</button>	

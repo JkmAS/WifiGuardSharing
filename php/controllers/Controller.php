@@ -38,11 +38,14 @@ abstract class Controller {
     * @return array output
     */
     public function __getOutput(){
-        $output = array(
-                        'message'=>$this->message,
-                        'data'=>$this->data,
-                        'view'=>$this->view
-        );
+        if (empty($this->message)){
+            $this->message = ["info","Log in please"];
+        }
+        $output = [
+            'message'=>$this->message,
+            'data'=>$this->data,
+            'view'=>$this->view
+        ];
         return $output;
     }
 }

@@ -22,11 +22,11 @@ class Router {
         
         //auto include php files
         spl_autoload_register(function ($class){            
-            $dir = array(
+            $dir = [
                 'model' => 'php/models/'.$class.'.php',
                 'controller' => 'php/controllers/'.$class.'.php',
                 'lib' => 'lib/dibi/dibi.min.php'
-            );   
+            ];   
             if (file_exists($dir['model'])){
                 include $dir['model'];
             }

@@ -28,12 +28,12 @@ class Login extends Controller{
         
         if (isset($_POST["login"])){
             if(isset($_POST["email"]) && isset($_POST["password"])){    
-                $this->model->login($_POST["name"], $_POST["password"]); 
+                $this->model->login($_POST["email"], $_POST["password"]); 
             }
         }
         if (isset($_POST["registration"])){
             if(isset($_POST["email"]) && isset($_POST["password"]) && isset($_POST["confirmPassword"])){    
-                $this->model->registr($_POST["name"], $_POST["password"], $_POST["confirmPassword"]);
+                $this->model->registr($_POST["email"], $_POST["password"], $_POST["confirmPassword"]);
             }
         }
     }

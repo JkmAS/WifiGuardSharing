@@ -28,9 +28,12 @@ abstract class Controller {
     * Get data from models, calling form childer of Controller
     */
     public function giveResult(){
-        $this->message = $this->model->__getMessage();
-        $this->data = $this->model->__getData();
-        $this->view = $this->model->__getView();
+        //Because of array of models
+        foreach($this->model as $model) {
+            $this->message = $model->__getMessage();
+            $this->data = $model->__getData();
+            $this->view = $model->__getView();
+        }       
     }
     
     /**

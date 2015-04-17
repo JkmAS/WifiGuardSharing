@@ -39,9 +39,9 @@
 
 					<div class="collapse navbar-collapse" id="navigation">
 						<ul class="nav navbar-nav">
-							<li class="active"><a href="#">Show records</a></li>
-							<li><a href="#">Upload</a></li>
-							<li><a href="#">Log out</a></li>
+							<li class="active"><a href="app.php?page=showrecord">Show records</a></li>
+							<li><a href="app.php?page=upload">Upload</a></li>
+							<li><a href="app.php?page=logout">Log out</a></li>
 						</ul>
 					</div>
 				</div>
@@ -53,35 +53,8 @@
 				<h1>WifiGuard Sharing</h1>
 			</header>		
 			
-			<div class="dropdown-panel">
-				<div class="dropdown">
-					<button class="btn-dropdown dropdown-toggle" data-toggle="dropdown">
-						Dropdown <span class="badge">4</span>
-						<span class="caret"></span>
-					</button>
-					<ul class="dropdown-menu">
-						<li><a href="#">Action</a></li>
-						<li><a href="#">Another action</a></li>
-						<li><a href="#">Something else here</a></li>
-						<li><a href="#">Separated link</a></li>
-					</ul>
-				</div>		
-			</div>
-			
-			<div class="tbl-panel">
-				<table>
-					<tr>
-						<th>Firstname</th>
-						<th>Lastname</th> 
-						<th>Points</th>
-					</tr>
-					<tr>
-						<td>Eve</td>
-						<td>Jackson</td> 
-						<td>94</td>
-					</tr>
-				</table>	
-			</div>			
+			<!-- view -->
+                        <? require_once $view ?>
 			
 		</div>
 		

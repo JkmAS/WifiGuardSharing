@@ -14,7 +14,9 @@ class Login extends Controller{
     */
     public function __construct() { 
         parent::__construct();
-        $this->model = new UserAdmin();
+        $this->model = [
+            'userAdmin' => new UserAdmin()
+        ];    
         $this->work();
         parent::giveResult();
     }
@@ -26,14 +28,16 @@ class Login extends Controller{
         //control validity of user session
         $this->model->controlSession();
         
-        if (isset($_POST["login"])){
-            if(isset($_POST["email"]) && isset($_POST["password"])){    
-                $this->model->login($_POST["email"], $_POST["password"]); 
+        if($_SERVER["REQUEST_METHOD"] == "POST"){        
+            if (isset($_POST["login"])){
+                if(isset($_POST["email"]) && isset($_POST["password"])){    
+                    $this->model['userAdmin']->login($_POST["email"], $_POST["password"]); 
+                }
             }
-        }
-        if (isset($_POST["registration"])){
-            if(isset($_POST["email"]) && isset($_POST["password"]) && isset($_POST["confirmPassword"])){    
-                $this->model->registr($_POST["email"], $_POST["password"], $_POST["confirmPassword"]);
+            if (isset($_POST["registration"])){
+                if(isset($_POST["email"]) && isset($_POST["password"]) && isset($_POST["confirmPassword"])){    
+                    $this->model['userAdmin']->registr($_POST["email"], $_POST["password"], $_POST["confirmPassword"]);
+                }
             }
         }
     }

@@ -38,7 +38,7 @@ class UserAdmin extends Model {
             $password_hash = $result->fetchSingle();
             
             if (password_verify($password, $password_hash)) {
-                $_SESSION['wifiGuardSharingEmail'] = $email;
+                $this->__setSession($email);
                 parent::redirection("app.php");
             } else {
                 $this->message = ["error", "Invalid username or password"];
@@ -88,7 +88,7 @@ class UserAdmin extends Model {
                     'password' => $password_result                
                 ];
                 dibi::query('INSERT INTO [user]', $arr); 
-                $_SESSION['wifiGuardSharingEmail'] = $email;
+                $this->__setSession($email);
                 parent::redirection("app.php");
             }            
         }
@@ -103,17 +103,41 @@ class UserAdmin extends Model {
     }
     
     /**
+    * Set session and sessionID
+    * @param string email Email of user 
+    */
+    private function __setSession($email){
+        $_SESSION['wifiGuardSharingEmail'] = $email;
+        $sessionID = sha1(uniqid(mt_rand()).$_SERVER['REMOTE_ADDR']);
+        $_SESSION["wifiGuardSharingID"] = $sessionID; 
+        $arr = array(
+           'sessionID' => $sessionID
+           );
+        dibi::query('UPDATE `user` SET ', $arr, 
+                    'WHERE `email`=%s', $email);
+    }
+    
+    /**
     * Control validity of session
     */
     public function controlSession(){
         $session = $_SESSION['wifiGuardSharingEmail'];
-        if(!empty($session)){
-            $result = dibi::query('SELECT COUNT(*)
+        $sessionID = $_SESSION["wifiGuardSharingID"];
+        $uri = $_SERVER['REQUEST_URI'];
+               
+        if(!empty($session) && !empty($sessionID)){
+            $result = dibi::query('SELECT sessionID
                                    FROM [user]
                                    WHERE [email] = %s', $session, 'LIMIT 1');
-            $userExist = $result->fetchSingle();
-            if ($userExist){
+            $databaseSessionID = $result->fetchSingle();
+            
+            //if user is in index.php with valid session
+            if (preg_match("/index.php/",$uri) && $databaseSessionID===$sessionID){
                 parent::redirection("app.php");
+            }
+            //if user try load app.php with invalid session
+            elseif (preg_match("/app.php/",$uri) && $databaseSessionID!==$sessionID){
+                parent::redirection("index.php");
             }
         }
     }

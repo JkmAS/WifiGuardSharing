@@ -1,27 +1,36 @@
 <?php
 
 /**
- * Description of Login
+ * User administration 
  *
- * @author jkmas
+ * @author jkmas <jkmasg@gmail.com>
+ * @package php/models
+ * @version 1.0.0
  */
-class UserAdmin {
-   
-    public $showMessage = null;  
-        
-    public function __construct() {       
+class UserAdmin extends Model {
+    
+    /**
+    * Constructor
+    */
+    public function __construct() {   
+        parent::__construct();
         DBCommunicator::connectDibi();
     }
     
+    /**
+    * Login and control input from user
+    * @param string email Email of user
+    * @param string password Password of user
+    */
     public function login($email, $password){
         if(empty($email)){ 
-            $this->showMessage = ["error", "Missing e-mail"];;
+            $this->message = ["error", "Missing e-mail"];;
         }
         elseif(!filter_var($email, FILTER_VALIDATE_EMAIL)){
-            $this->showMessage = ["error", "Email is not valid"];
+            $this->message = ["error", "Email is not valid"];
         }
         elseif(empty($password)){ 
-            $this->showMessage = ["error", "Missing password"];
+            $this->message = ["error", "Missing password"];
         } else {
             $result = dibi::query('SELECT password
                                    FROM [user]
@@ -30,35 +39,41 @@ class UserAdmin {
             
             if (password_verify($password, $password_hash)) {
                 $_SESSION['wifiGuardSharingEmail'] = $email;
-                $this->redirection("app.php");
+                parent::redirection("app.php");
             } else {
-                $this->showMessage = ["error", "Invalid username or password"];
+                $this->message = ["error", "Invalid username or password"];
             }
         }
     }
     
+    /**
+    * Registr and control input from user
+    * @param string email Email of user
+    * @param string password Password of user
+    * @param string confirmPassword Password of user 
+    */
     public function registr($email, $password, $confirmPassword){
         if(empty($email)){ 
-            $this->showMessage = ["error", "Missing email"];
+            $this->message = ["error", "Missing email"];
         }
         elseif(!filter_var($email, FILTER_VALIDATE_EMAIL)){
-            $this->showMessage = ["error", "Email is not valid"];
+            $this->message = ["error", "Email is not valid"];
         }
         elseif(empty($password)){ 
-            $this->showMessage = ["error", "Missing password"];
+            $this->message = ["error", "Missing password"];
         }
         elseif(empty($confirmPassword)){
-            $this->showMessage = ["error", "Missing confirm password"];
+            $this->message = ["error", "Missing confirm password"];
         }
         elseif ($password != $confirmPassword) {     
-            $this->showMessage = ["error", "Passwords do not match"];
+            $this->message = ["error", "Passwords do not match"];
         } else {            
             $result = dibi::query('SELECT COUNT(*)
                                    FROM [user]
                                    WHERE [email] = %s', $email, 'LIMIT 1');
             $userExist = $result->fetchSingle();
             if ($userExist){     
-                $this->showMessage = ["error", "User already exists"];
+                $this->message = ["error", "User already exists"];
             }        
             else {              
                 //password_hash, PASSWORD_BCRYPT = BLOWFISH
@@ -74,17 +89,22 @@ class UserAdmin {
                 );
                 dibi::query('INSERT INTO [user]', $arr); 
                 $_SESSION['wifiGuardSharingEmail'] = $email;
-                $this->redirection("app.php");
-            }
-            
+                parent::redirection("app.php");
+            }            
         }
     }    
     
+    /**
+    * Log out user and redirect to index
+    */
     public function logout(){
         session_destroy();
-        $this->redirection("index.php");
+        parent::redirection("index.php");
     }
     
+    /**
+    * Control validity of session
+    */
     public function controlSession(){
         $session = $_SESSION['wifiGuardSharingEmail'];
         if(!empty($session)){
@@ -93,17 +113,8 @@ class UserAdmin {
                                    WHERE [email] = %s', $session, 'LIMIT 1');
             $userExist = $result->fetchSingle();
             if ($userExist){
-                $this->redirection("app.php");
+                parent::redirection("app.php");
             }
         }
     }
-    
-    public function __getMessage(){
-        return $this->showMessage;
-    } 
-    
-    private function redirection($url){
-        header("Location: $url");
-        exit;     
-    }    
 }

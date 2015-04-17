@@ -1,7 +1,7 @@
 <?php
     require_once("php/Router.php");
     $router = new Router();
-    //extract($router->__getData());    
+    extract($router->__getData());    
 ?>
 <!DOCTYPE html>
 <html>

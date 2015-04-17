@@ -1,17 +1,26 @@
 <?php
 
 /**
- * Description of Router
+ * Router in MVC
  *
- * @author jkmas
+ * @author jkmas <jkmasg@gmail.com>
+ * @package php
+ * @version 1.0.0
  */
-
-//todo vyřešit zprávy
 
 class Router {    
     
+    //controller
+    public $controller = null;
+    
+    /**
+    * Constructor
+    */
     public function __construct() {
+        //session start
         session_start(); 
+        
+        //auto include php files
         spl_autoload_register(function ($class){            
             $dir = array(
                 'model' => 'php/models/'.$class.'.php',
@@ -31,16 +40,28 @@ class Router {
                 include $dir['lib'];
             }
         });
+        
         $this->loadController();
     }
     
+    /**
+    * Load the controller
+    */
     public function loadController(){
-        $uri = $_SERVER['REQUEST_URI']; 
+        $uri = $_SERVER['REQUEST_URI'];
         if (preg_match("/index.php/", $uri)){
-            new Login();
+            $this->controller = new Login();
         }
         if (preg_match("/app.php/", $uri)){
-            new App();
+            $this->controller = new App();
         }
+    }
+    
+    /**
+    * Get data from controller, applied in HTML
+    * @return array output
+    */
+    public function __getData(){
+        return $this->controller->__getOutput();
     }
 }

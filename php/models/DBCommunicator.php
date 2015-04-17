@@ -1,12 +1,17 @@
 <?php
 
 /**
- * Description of DBCommunicator
+ * Settings for Dibi database layer
  *
- * @author jkmas
+ * @author jkmas <jkmasg@gmail.com>
+ * @package php/models
+ * @version 1.0.0
  */
 class DBCommunicator {
-
+    
+    /**
+    * Connect to database
+    */
     public static function connectDibi(){
         dibi::connect(array(
             'driver'   => 'mysql',

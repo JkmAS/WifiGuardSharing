@@ -7,7 +7,7 @@
  * @package php/models
  * @version 1.0.0
  */
-class Uploader {
+class Uploader extends Model {
     
     /**
     * Constructor

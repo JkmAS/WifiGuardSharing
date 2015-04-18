@@ -14,11 +14,6 @@ class App extends Controller {
     */
     public function __construct() {
         parent::__construct();
-        $this->model = [
-            'userAdmin' => new UserAdmin(),
-            'uploader' => new Uploader(),
-            'showRecord' => new ShowRecord()
-        ];
         $this->work();
         parent::giveResult();
     }
@@ -27,22 +22,26 @@ class App extends Controller {
     * Transmit data to models
     */
     public function work() {
-        //control validity of user session
-        $this->model['userAdmin']->controlSession();
+        $this->helpmodel = new UserAdmin();
+        //control validity of user session        
+        $this->helpmodel->controlSession();
         
         if($_SERVER["REQUEST_METHOD"] == "POST"){ 
             //todo
         }      
         if($_SERVER["REQUEST_METHOD"] == "GET"){ 
             if (isset($_GET["page"])){
-                if($_GET["logout"]){
-                    $this->model['userAdmin']->logout();
+                if($_GET["page"]==="logout"){
+                    $this->model = UserAdmin();
+                    $this->model->logout();
                 }
-                elseif($_GET["upload"]){
-                    $this->model['uploader']->__setView();
+                elseif($_GET["page"]==="upload"){
+                    $this->model = new Uploader();
+                    $this->model->__setView();
                 }
-                elseif($_GET["showrecord"]){
-                    $this->model['showRecord']->__setView();
+                elseif($_GET["page"]==="showrecord"){
+                    $this->model = new ShowRecord();
+                    $this->model->__setView();
                 }
             }
         }  

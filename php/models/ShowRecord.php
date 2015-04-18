@@ -8,7 +8,13 @@
  * @version 1.0.0
  */
 class ShowRecord extends Model {
-    //put your code here
+    
+    /**
+    * Constructor
+    */
+    public function __construct() {   
+        parent::__construct();       
+    }
     
     /**
     * Setting view

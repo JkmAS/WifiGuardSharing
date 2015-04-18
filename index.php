@@ -42,7 +42,12 @@
 							<div class="form-group">
 								<label class="col-sm-2 control-label">Console</label>
 								<div class="col-sm-10">
-									<span class="<?= 'info-log-'.$message[0]?>"><?= $message[1]?></span>
+                                                                        <?if(empty($message[1])){
+                                                                            $message = ["info","Log in please"];
+                                                                        }?>
+									<span class="<?= 'info-log-'.$message[0]?>">
+                                                                            <?= $message[1]?>
+                                                                        </span>
 								</div>
 								<label class="col-sm-2 control-label">E-mail</label>
 								<div class="col-sm-10">

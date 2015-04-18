@@ -9,6 +9,7 @@
  */
 abstract class Controller {
     protected $model = null;
+    protected $helpmodel = null;
     public $message = null;
     public $data = null;
     public $view = null;
@@ -28,12 +29,9 @@ abstract class Controller {
     * Get data from models, calling form childer of Controller
     */
     public function giveResult(){
-        //Because of array of models
-        foreach($this->model as $model) {
-            $this->message = $model->__getMessage();
-            $this->data = $model->__getData();
-            $this->view = $model->__getView();
-        }       
+        $this->message = $this->model->__getMessage();
+        $this->data = $this->model->__getData();
+        $this->view = $this->model->__getView();
     }
     
     /**
@@ -41,9 +39,6 @@ abstract class Controller {
     * @return array output
     */
     public function __getOutput(){
-        if (empty($this->message)){
-            $this->message = ["info","Log in please"];
-        }
         $output = [
             'message'=>$this->message,
             'data'=>$this->data,

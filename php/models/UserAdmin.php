@@ -99,6 +99,11 @@ class UserAdmin extends Model {
     */
     public function logout(){
         session_destroy();
+        $arr = array(
+           'sessionID' => ''
+           );
+        dibi::query('UPDATE `user` SET ', $arr, 
+                    'WHERE `email`=%s', $email);
         parent::redirection("index.php");
     }
     

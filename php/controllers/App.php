@@ -26,13 +26,22 @@ class App extends Controller {
         //control validity of user session        
         $this->helpmodel->controlSession();
         
-        if($_SERVER["REQUEST_METHOD"] == "POST"){ 
-            //todo
-        }      
+        //ajax
+        if(!empty($_SERVER['HTTP_X_REQUESTED_WITH'])){
+            if(isset($_FILES["files"])){
+                $this->model = new Uploader();
+                $this->model->uploadFiles($_FILES["files"]);
+            }
+        }
+        
+//        if($_SERVER["REQUEST_METHOD"] == "POST"){ 
+//            //todo
+//        }    
+        
         if($_SERVER["REQUEST_METHOD"] == "GET"){ 
             if (isset($_GET["page"])){
                 if($_GET["page"]==="logout"){
-                    $this->model = UserAdmin();
+                    $this->model = new UserAdmin();
                     $this->model->logout();
                 }
                 elseif($_GET["page"]==="upload"){
@@ -44,12 +53,6 @@ class App extends Controller {
                     $this->model->__setView();
                 }
             }
-        }  
-        //ajax
-        if(!empty($_SERVER['HTTP_X_REQUESTED_WITH'])){
-            if(isset($_POST["upload"])){
-                $this->model['upload']->uploadFiles($_FILES["files"]);
-            }
-        }
+        } 
     }
 }

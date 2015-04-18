@@ -22,7 +22,7 @@ class Uploader extends Model {
     * @param file files Files form $_Files
     */
     public function uploadFiles($files){
-        $validFormat = "xml";
+        $validFormat = ["xml"];
         $dir = "files/"; 
 
         foreach ($files['name'] as $file => $fileName) { 
@@ -43,7 +43,7 @@ class Uploader extends Model {
                     continue;
                 }
                 else{ 
-                    move_uploaded_file($files["tmp_name"][$fileName], $dir.$fileName);
+                    move_uploaded_file($files["tmp_name"][$file], $dir.$fileName);
                     $arr = [
                         'email' => $_SESSION['wifiGuardSharingEmail'],
                         'name' => $fileName              

@@ -61,5 +61,6 @@
 		<!-- JavaScript -->
 		<script src="lib/jquery/dist/jquery.min.js"></script>
 		<script src="lib/bootstrap/dist/js/bootstrap.min.js"></script>
+                <script src="js/javascript.js"></script>
 	</body>
 </html>

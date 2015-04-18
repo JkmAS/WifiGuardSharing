@@ -24,7 +24,7 @@ class Login extends Controller{
     public function work(){       
         $this->model = new UserAdmin();
         //control validity of user session
-        $this->model['userAdmin']->controlSession();
+        $this->model->controlSession();
         
         if($_SERVER["REQUEST_METHOD"] == "POST"){        
             if (isset($_POST["login"])){

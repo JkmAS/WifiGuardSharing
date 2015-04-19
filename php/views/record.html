@@ -1,14 +1,21 @@
 <div class="dropdown-panel">
         <div class="dropdown">
                 <button class="btn-dropdown dropdown-toggle" data-toggle="dropdown">
-                        Dropdown <span class="badge">4</span>
+                        Records <span class="badge"><?= $data['quantity']?></span>
                         <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu">
-                        <li><a href="#">Action</a></li>
-                        <li><a href="#">Another action</a></li>
-                        <li><a href="#">Something else here</a></li>
-                        <li><a href="#">Separated link</a></li>
+                        <?php
+                            if(is_array($data['files'])){
+                                foreach ($data['files'] as $value) {
+                                    echo "<li><a href='".
+                                         urlencode("app.php?page=showrecord&xml=".$value)
+                                         ."'><strong>".$value."</strong></a></li>";
+                                }
+                            } else {
+                                echo "<li><a href='#'><strong>".$data['files']."</strong></a></li>";
+                            }
+                        ?>
                 </ul>
         </div>		
 </div>

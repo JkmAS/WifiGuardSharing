@@ -42,6 +42,7 @@ class App extends Controller {
                 }
                 elseif($_GET["page"]==="showrecord"){
                     $this->model = new ShowRecord();
+                    $this->model->showFiles();
                     $this->model->__setView();
                 }
             }

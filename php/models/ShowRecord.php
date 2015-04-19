@@ -41,7 +41,23 @@ class ShowRecord extends Model {
         } else {
             $this->data['files'] = "No records";
         }
-    }        
+    } 
+    
+    /**
+    * Transform XML with XSLT
+    */
+    public function transformXML($fileXML){
+        //load xml file
+        $xml = new DOMDocument();
+        $xml->load($fileXML);
+        //load xsl file
+        $xsl = new DOMDocument();
+        $xsl->load("php/views/record.xsl");
+        //transform
+        $proc = new XSLTProcessor();
+        $proc->importStylesheet($xsl);
+        $this->view = $proc->transformToXml($xml);         
+    }
     
     /**
     * Setting view

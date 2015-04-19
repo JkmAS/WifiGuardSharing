@@ -18,17 +18,20 @@ class Uploader extends Model {
     }
     
     /**
-    * Function for uploading files to server
+    * Function for uploading files to server via ajax
     * @param file files Files form $_Files
+    * @return array Array of messages
     */
     public function uploadFiles($files){
         $validFormat = ["xml"];
         $dir = "files/"; 
-
+        $output = array();
+        
         foreach ($files['name'] as $file => $fileName) { 
             //4 No file was uploaded
             if ($files['error'][$file] == 4) {
-                $this->message = ["error", "$fileName is not uploaded"];
+                $this->message = ["error", "File $fileName is not uploaded"];
+                array_push($output, $this->message);
                 continue;
             }	       
             //0 There is no error
@@ -36,10 +39,12 @@ class Uploader extends Model {
                 //control valid format
                 $fileInfo = pathinfo($fileName, PATHINFO_EXTENSION);
                 if(!in_array($fileInfo, $validFormat)){
-                    $this->message = ["error", "$fileName is not a valid format"];
+                    $this->message = ["error", "File $fileName is not in valid format"];
+                    array_push($output, $this->message);
                     continue;
                 } elseif(file_exists($dir.$fileName)){
-                    $this->message = ["error", "$fileName already exists"];
+                    $this->message = ["error", "File $fileName already exists"];
+                    array_push($output, $this->message);
                     continue;
                 }
                 else{ 
@@ -49,10 +54,12 @@ class Uploader extends Model {
                         'name' => $fileName              
                     ];
                     dibi::query('INSERT INTO [files]', $arr); 
-                    $this->message = ["info", "Success"];
+                    $this->message = ["info", "File $fileName was uploaded"];
+                    array_push($output, $this->message);
                 }
-            }
+            }                        
         }
+        die(json_encode($output));
     }  
     
     /**

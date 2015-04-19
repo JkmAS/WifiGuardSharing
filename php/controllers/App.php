@@ -26,14 +26,6 @@ class App extends Controller {
         //control validity of user session        
         $this->helpmodel->controlSession();
         
-        //ajax
-        if(!empty($_SERVER['HTTP_X_REQUESTED_WITH'])){
-            if(isset($_FILES["files"])){
-                $this->model = new Uploader();
-                $this->model->uploadFiles($_FILES["files"]);
-            }
-        }
-        
 //        if($_SERVER["REQUEST_METHOD"] == "POST"){ 
 //            //todo
 //        }    
@@ -54,5 +46,13 @@ class App extends Controller {
                 }
             }
         } 
+        
+        //ajax
+        if(!empty($_SERVER['HTTP_X_REQUESTED_WITH'])){
+            if(isset($_FILES["files"])){
+                $this->model = new Uploader();
+                $this->model->uploadFiles($_FILES["files"]);
+            }
+        }
     }
 }

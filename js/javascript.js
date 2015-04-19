@@ -10,28 +10,36 @@ $(document).ready(function(){
     });
     /*=========================UPLOAD FILE============================*/	
     //Upload files via ajax
-    var message = $('.info-upload-panel');
+    var messagePanel = $('.info-upload-panel');
     $("button[name = 'upload']").click(function(){
-        message.prepend("<img src='images/loader.gif' alt='loader'> Uploading...");
+        messagePanel.empty();
+        messagePanel.prepend("<span class='info-log-info'>"
+                             +"<img src='images/loader.gif' alt='loader'> Uploading..."
+                             +"</span>");
         var formData = new FormData($('form')[0]);
         $.ajax({
             url: '',  
             type: 'POST',
-            success:  function(data){    
-                // clear input form
+            success:  function(data){  
+                //clear
                 $('input[type="file"]').val('');
-                //refresh whole page with javascript, font and css
-                document.open();
-                document.write(data);
-                document.close();
+                messagePanel.empty(); 
+                //show message
+                $.each(data, function(index, value) {
+                   messagePanel.prepend("<span class='info-log-"+value[0]+"'>"
+                                 +value[1]
+                                 +"</span>"
+                                 +"<br>");  
+                });               
             },
             error:  function(e) {},
             data: formData,
+            dataType: 'JSON',
             cache: false,
             contentType: false,
             processData: false
         });
         return false;
-    });
+    });     
         
 });

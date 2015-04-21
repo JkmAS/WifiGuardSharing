@@ -1,16 +1,18 @@
 <div class="dropdown-panel">
         <div class="dropdown">
                 <button class="btn-dropdown dropdown-toggle" data-toggle="dropdown">
-                        Records <span class="badge"><?= $data['quantity']?></span>
+                        Records <span class="badge"><?= htmlspecialchars($data['quantity'], ENT_QUOTES);?></span>
                         <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu">
                         <?php
                             if(is_array($data['files'])){
                                 foreach ($data['files'] as $value) {
-                                    echo "<li><a href='".
-                                         urlencode("app.php?page=showrecord&xml=".$value)
-                                         ."'><strong>".$value."</strong></a></li>";
+                                    echo "<li>".
+                                         "<a href='".
+                                         urlencode("app.php?page=showrecord&xml=".
+                                                   htmlspecialchars($value, ENT_QUOTES)).
+                                         "'><strong>".$value."</strong></a></li>";
                                 }
                             } else {
                                 echo "<li><a href='#'><strong>".$data['files']."</strong></a></li>";
@@ -21,5 +23,5 @@
 </div>
 
 <div class="tbl-panel">
-      <?= $data['XMLOutput']; ?>	
+        <?= $data['XMLOutput']; ?>	
 </div>	

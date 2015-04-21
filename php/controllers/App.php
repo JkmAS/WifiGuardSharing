@@ -28,7 +28,7 @@ class App extends Controller {
           
         //4O4 error
         $error = true;
-        
+                
         if($_SERVER["REQUEST_METHOD"] == "GET"){ 
             if (isset($_GET["page"])){
                 if($_GET["page"]==="logout"){

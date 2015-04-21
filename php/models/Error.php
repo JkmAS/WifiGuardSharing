@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Error class - 404 nof found
+ * Error class - 404 Nof Found
  *
  * @author jkmas <jkmasg@gmail.com>
  * @package php/models

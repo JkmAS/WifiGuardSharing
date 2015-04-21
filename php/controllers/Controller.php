@@ -31,14 +31,14 @@ abstract class Controller {
     public function giveResult(){
         $this->message = $this->model->__getMessage();
         $this->data = $this->model->__getData();
-        $this->view = $this->model->__getView();
+        $this->view = $this->model->__getView();        
     }
-    
+               
     /**
     * Return data to Router
     * @return array output
     */
-    public function __getOutput(){
+    public function __getOutput(){        
         $output = [
             'message'=>$this->message,
             'data'=>$this->data,

@@ -34,13 +34,19 @@
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
 						</button>
-						<a class="navbar-brand" href="#">Menu</a>
+						<a class="navbar-brand" href="app.php?page=showrecord">Menu</a>
 					</div>
 
 					<div class="collapse navbar-collapse" id="navigation">
-						<ul class="nav navbar-nav">
-							<li class="active"><a href="app.php?page=showrecord">Show records</a></li>
-							<li><a href="app.php?page=upload">Upload</a></li>
+						<ul class="nav navbar-nav">                                                   
+                                                        <li <? if (preg_match("/page(=|%3D)showrecord/",$_SERVER['REQUEST_URI'])){
+                                                               echo "class='active'";
+                                                               }
+                                                            ?>><a href="app.php?page=showrecord">Show records</a></li>
+                                                        <li <? if (preg_match("/page(=|%3D)upload/",$_SERVER['REQUEST_URI'])){
+                                                               echo "class='active'";
+                                                               }
+                                                            ?>><a href="app.php?page=upload">Upload</a></li>
 							<li><a href="app.php?page=logout">Log out</a></li>
 						</ul>
 					</div>

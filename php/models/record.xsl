@@ -15,6 +15,10 @@
     <xsl:template match="/">
         
         <table>
+            <caption>
+                <strong>Record: <xsl:value-of select="devices/time"/></strong>
+            </caption>
+            
             <tr>
                 <th>No.</th>
                 <th>IP address</th> 
@@ -22,7 +26,7 @@
                 <th>Device name</th>
                 <th>Information</th>
             </tr>        
-            <caption>Record: <xsl:value-of select="devices/time"/></caption>            
+                        
             <xsl:for-each select="devices/device">
                 <tr>
                     <td><xsl:value-of select="@no."/>.</td>

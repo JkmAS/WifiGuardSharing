@@ -39,7 +39,7 @@ class UserAdmin extends Model {
             
             if (password_verify($password, $password_hash)) {
                 $this->__setSession($email);
-                parent::redirection("app.php");
+                parent::redirection("app.php?page=showrecord");
             } else {
                 $this->message = ["error", "Invalid username or password"];
             }
@@ -89,7 +89,7 @@ class UserAdmin extends Model {
                 ];
                 dibi::query('INSERT INTO [user]', $arr); 
                 $this->__setSession($email);
-                parent::redirection("app.php");
+                parent::redirection("app?page=showrecord.php");
             }            
         }
     }    
@@ -138,7 +138,7 @@ class UserAdmin extends Model {
             
             //if user is in index.php with valid session
             if (preg_match("/index.php/",$uri) && $databaseSessionID===$sessionID){
-                parent::redirection("app.php");
+                parent::redirection("app.php?page=showrecord");
             }
             //if user try load app.php with invalid session
             elseif (preg_match("/app.php/",$uri) && $databaseSessionID!==$sessionID){

@@ -36,7 +36,8 @@ abstract class Model {
     * Redirect to other website
     */
     protected function redirection($url){
-        header("Location: $url");
+        $urlEncode = urlencode($url);
+        header("Location: $urlEncode");
         exit;     
     } 
 }

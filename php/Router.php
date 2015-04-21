@@ -25,19 +25,13 @@ class Router {
             $dir = [
                 'model' => 'php/models/'.$class.'.php',
                 'controller' => 'php/controllers/'.$class.'.php',
-                'lib' => 'lib/dibi/dibi.min.php'
+                'lib' => 'lib/dibi/dibi.min.php',
+                'onlyFile' => $class.'.php'
             ];   
-            if (file_exists($dir['model'])){
-                include $dir['model'];
-            }
-            elseif (file_exists($dir['controller'])){
-                include $dir['controller'];
-            } 
-            elseif (file_exists($class.'.php')) {
-                include $class.'.php';
-            }
-            elseif (file_exists($dir['lib'])) {
-                include $dir['lib'];
+            foreach ($dir as $key => $value) {
+                if(file_exists($value)){
+                    include_once $value;
+                }
             }
         });
         

@@ -32,8 +32,8 @@
 				<h1>WifiGuard Sharing</h1>
 			</header>		
 			
-			<div class="console-log">
-				<div class="console-log-panel">
+			<div class="main">
+				<div class="main-panel">
 					<div class="panel-heading">
 						<h2 class="panel-title">Login</h2>
 					</div>

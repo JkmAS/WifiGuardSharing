@@ -45,6 +45,7 @@ class ShowRecord extends Model {
     
     /**
     * Transform XML with XSLT
+    * @param string fileXML Name of XML file
     */
     public function transformXML($fileXML){
         $dir = "files/";

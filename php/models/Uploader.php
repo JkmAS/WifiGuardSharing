@@ -51,6 +51,7 @@ class Uploader extends Model {
                     //Is XML valid against XML Schema?
                     if ($this->validateXML($dir.$fileName) === false){
                         $this->message = ["error", "File $fileName is not valid against schema"];
+                        array_push($output, $this->message);
                         unlink($dir.$fileName);
                         continue;
                     } else {                    
@@ -74,6 +75,8 @@ class Uploader extends Model {
     * @return boolean True if the XML is valid
     */
     public function validateXML($xmlFile){
+        //Because of throwing errors from validation
+        libxml_use_internal_errors(true);
         $xml = new DOMDocument(); 
         $xml->load($xmlFile); 
         if (!$xml->schemaValidate('php/models/record.xsd')) {

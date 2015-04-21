@@ -144,6 +144,10 @@ class UserAdmin extends Model {
             elseif (preg_match("/app.php/",$uri) && $databaseSessionID!==$sessionID){
                 parent::redirection("index.php");
             }
+        } 
+        //if user try load app.php without session
+        elseif(preg_match("/app.php/",$uri)){
+            parent::redirection("index.php");
         }
     }
 }

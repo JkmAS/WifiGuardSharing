@@ -14,6 +14,11 @@ class ShowRecord extends Model {
     */
     public function __construct() {   
         parent::__construct();    
+        $this->data = [
+            'quantity' => null,
+            'files' => null,
+            'XMLOutput' => null
+        ];
         DBCommunicator::connectDibi();
     }
     
@@ -26,12 +31,7 @@ class ShowRecord extends Model {
                                FROM [files]
                                WHERE [email] = %s', $email);
         $files = $result->fetchAll();
-        
-        $this->data = [
-            'quantity' => null,
-            'files' => null
-        ];
-        
+                
         $this->data['quantity'] = count($files);
         if ($this->data['quantity'] != 0){
             $this->data['files'] = [];
@@ -47,16 +47,22 @@ class ShowRecord extends Model {
     * Transform XML with XSLT
     */
     public function transformXML($fileXML){
+        $dir = "files/";
+        $fileXML = $dir.$fileXML;
+        //XML not exist, show nothing
+        if(!file_exists($fileXML)){
+            return;
+        }
         //load xml file
         $xml = new DOMDocument();
         $xml->load($fileXML);
         //load xsl file
         $xsl = new DOMDocument();
-        $xsl->load("php/views/record.xsl");
+        $xsl->load("php/models/record.xsl");
         //transform
         $proc = new XSLTProcessor();
         $proc->importStylesheet($xsl);
-        $this->view = $proc->transformToXml($xml);         
+        $this->data['XMLOutput'] = $proc->transformToXml($xml);         
     }
     
     /**

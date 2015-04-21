@@ -43,6 +43,9 @@ class App extends Controller {
                 elseif($_GET["page"]==="showrecord"){
                     $this->model = new ShowRecord();
                     $this->model->showFiles();
+                    if(!empty($_GET["xml"])){
+                        $this->model->transformXML($_GET["xml"]);
+                    }
                     $this->model->__setView();
                 }
             }

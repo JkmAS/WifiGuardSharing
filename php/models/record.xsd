@@ -8,17 +8,19 @@
 -->
 
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" 
-    elementFormDefault="qualified"> 
+           elementFormDefault="qualified"
+           targetNamespace="http://www.wifiguard.cz"
+           xmlns="http://www.wifiguard.cz"> 
     
     <xs:simpleType name="ipType">
         <xs:restriction base="xs:string">
-            <xs:pattern value="([0-9]{1,3}\.){3}([0-9]{1,3})"></xs:pattern>
+            <xs:pattern value="([0-9]{1,3}\.){3}([0-9]{1,3})"/>
         </xs:restriction>
     </xs:simpleType>
     
     <xs:simpleType name="macType">
         <xs:restriction base="xs:string">
-            <xs:pattern value="([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})"></xs:pattern>
+            <xs:pattern value="([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})"/>
         </xs:restriction>
     </xs:simpleType>
     
@@ -29,7 +31,7 @@
             <xs:element name="device_name" type="xs:string"/>
             <xs:element name="information" type="xs:string"/>
         </xs:sequence>
-        <xs:attribute name="no." type="xs:int"></xs:attribute>
+        <xs:attribute name="no." type="xs:int"/>
     </xs:complexType>    
     
     <xs:complexType name="devicesType">

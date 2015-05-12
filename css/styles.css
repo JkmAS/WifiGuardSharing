@@ -5851,7 +5851,7 @@ fieldset[disabled] .navigation .btn-link:focus {
   }
 }
 input[type=file] {
-  opacity: 0;
+  padding: 0;
   position: absolute;
   left: 0;
   top: 0;

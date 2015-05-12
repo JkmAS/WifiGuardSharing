@@ -24,7 +24,7 @@ class Uploader extends Model {
     */
     public function uploadFiles($files){
         $validFormat = ["xml"];
-        $dir = "files/"; 
+        $dir = "files/".$_SESSION['wifiGuardSharingEmail']."/"; 
         $output = array();
         
         foreach ($files['name'] as $file => $fileName) { 

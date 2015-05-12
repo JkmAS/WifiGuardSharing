@@ -89,6 +89,7 @@ class UserAdmin extends Model {
                 ];
                 dibi::query('INSERT INTO [user]', $arr); 
                 $this->__setSession($email);
+                mkdir("files/".$email, 0700);
                 parent::redirection("app.php?page=showrecord");
             }            
         }

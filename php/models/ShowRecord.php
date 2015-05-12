@@ -48,7 +48,7 @@ class ShowRecord extends Model {
     * @param string fileXML Name of XML file
     */
     public function transformXML($fileXML){
-        $dir = "files/";
+        $dir = "files/".$_SESSION['wifiGuardSharingEmail']."/";
         $fileXML = $dir.$fileXML;
         //XML not exist, show nothing
         if(!file_exists($fileXML)){

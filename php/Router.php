@@ -46,12 +46,13 @@ class Router {
         if (preg_match("/index.php/", $uri)){
             $this->controller = new Login();
         }
-        if (preg_match("/app.php/", $uri)){
+        elseif (preg_match("/app.php/", $uri)){
             $this->controller = new App();
         }
         //if we have only www.name.com/xxx/ 
-        if (preg_match("//", $subject)){
-            $this->controller = new Login();
+        elseif (preg_match("//", $subject)){
+            header("Location: index.php");
+            die();
         }
     }
     

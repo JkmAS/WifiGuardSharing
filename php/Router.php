@@ -49,6 +49,10 @@ class Router {
         if (preg_match("/app.php/", $uri)){
             $this->controller = new App();
         }
+        //if we have only www.name.com/xxx/ 
+        if (preg_match("//", $subject)){
+            $this->controller = new Login();
+        }
     }
     
     /**
